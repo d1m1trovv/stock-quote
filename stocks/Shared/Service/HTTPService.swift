@@ -15,6 +15,7 @@ protocol HTTPServiceProtocol: AnyObject {
 
 class HTTPService: HTTPServiceProtocol {
     private let getCompanySymbolURL = "https://stock-market-data.p.rapidapi.com/search/company-name-to-ticker-symbol?company_name="
+    private let getStockDetailsURL = "https://stock-market-data.p.rapidapi.com/stock/quote?ticker_symbol="
     
     
     func getCompanySymbolByName(_ companyName: String,
@@ -39,6 +40,30 @@ class HTTPService: HTTPServiceProtocol {
                 }
             }
         }.resume()
+    }
+    
+    func getStockDetailsBySymbol(_ symbol: String,
+                                 completion: @escaping (StockDetailsResponseResource) -> Void) {
+        guard let url = URL(string: getStockDetailsURL + symbol) else { return }
+        
+        let request = createRequest(url, "GET")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data,
+                let httpResponse = response as? HTTPURLResponse,
+                (200..<300).contains(httpResponse.statusCode),
+                error == nil {
+                do {
+                    let details = try JSONDecoder().decode(StockDetailsResponseResource.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(details)
+                    }
+                } catch let error {
+                    print(error.localizedDescription)
+                    return
+                }
+            }
+            }.resume()
     }
     
     private func createRequest(_ url: URL, _ method: String) -> URLRequest {
