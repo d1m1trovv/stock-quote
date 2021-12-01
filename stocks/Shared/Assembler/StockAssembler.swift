@@ -8,6 +8,14 @@
 
 import Foundation
 
-class StockAssembler {
-    func convertToStock(from: SearchStockResponseResource) -> 
+protocol StockAssemblerProtocol: AnyObject {
+    func convertToStockSymbol(from searchStockResponseResource: SearchStockResponseResource) -> StockSymbol
+}
+
+class StockAssembler: StockAssemblerProtocol {
+    func convertToStockSymbol(from searchStockResponseResource: SearchStockResponseResource) -> StockSymbol {
+        return StockSymbol(date: searchStockResponseResource.date,
+                           status: searchStockResponseResource.status,
+                           ticker_symbol: searchStockResponseResource.ticker_symbol)
+    }
 }

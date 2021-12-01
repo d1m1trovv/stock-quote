@@ -9,16 +9,17 @@
 import Foundation
 
 protocol HTTPServiceProtocol: AnyObject {
-    func getCompanySymbolByName()
+    func getCompanySymbolByName(_ companyName: String,
+                                completion: @escaping (SearchStockResponseResource) -> Void)
 }
 
-class HTTPService {
+class HTTPService: HTTPServiceProtocol {
     private let getCompanySymbolURL = "https://stock-market-data.p.rapidapi.com/search/company-name-to-ticker-symbol?company_name="
     
     
     func getCompanySymbolByName(_ companyName: String,
-                                completion: @escaping ([SearchStockResponseResource]) -> Void) {
-        guard let url = URL(string: getCompanySymbolURL) else { return }
+                                completion: @escaping (SearchStockResponseResource) -> Void) {
+        guard let url = URL(string: getCompanySymbolURL + companyName) else { return }
         
         let request = createRequest(url, "GET")
         
@@ -28,23 +29,27 @@ class HTTPService {
                 (200..<300).contains(httpResponse.statusCode),
                 error == nil {
                 do {
-                    let stocks = try JSONDecoder().decode([SearchStockResponseResource].self, from: data)
-                    completion(stocks)
+                    let stocks = try JSONDecoder().decode(SearchStockResponseResource.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(stocks)
+                    }
                 } catch let error {
                     print(error.localizedDescription)
                     return
                 }
             }
-        }
+        }.resume()
     }
     
     private func createRequest(_ url: URL, _ method: String) -> URLRequest {
         let headers = [
             "x-rapidapi-host": "stock-market-data.p.rapidapi.com",
-            "x-rapidapi-key": "beb546768amsh3e44423225e7191p1abdcajsn6acfa369c46c"
+            "x-rapidapi-key": "828609b044msh172ee1c787b9618p133205jsn8eee13ad9b52"
         ]
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: url,
+                                 cachePolicy: .useProtocolCachePolicy,
+                                 timeoutInterval: 20.0)
         request.httpMethod = method
         request.allHTTPHeaderFields = headers
         

@@ -22,6 +22,10 @@ class MainController: UIViewController {
     
     private func configureSearchController() {
         let searchResultsController = SearchResultsController()
+        let searchInteractor = SearchStockInteractor()
+        searchResultsController.interactor = searchInteractor
+        searchInteractor.controller = searchResultsController
+        
         searchController = UISearchController(searchResultsController: searchResultsController)
         
         guard let searchController = searchController else { return }
