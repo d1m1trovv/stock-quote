@@ -15,6 +15,14 @@
 		8425339E27577026007C75BB /* stocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425339D27577026007C75BB /* stocksTests.swift */; };
 		842533A927577026007C75BB /* stocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842533A827577026007C75BB /* stocksUITests.swift */; };
 		847691C12757761E00A37CEC /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847691C02757761E00A37CEC /* SearchService.swift */; };
+		847691C327577B0900A37CEC /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847691C227577B0900A37CEC /* MainController.swift */; };
+		84CAEBE027578B3000CCCD20 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBDF27578B3000CCCD20 /* SearchResultsController.swift */; };
+		84CAEBE427578F2300CCCD20 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBE327578F2300CCCD20 /* HTTPService.swift */; };
+		84CAEBE82757954700CCCD20 /* SearchStockRequestResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBE72757954700CCCD20 /* SearchStockRequestResource.swift */; };
+		84CAEBEA2757955500CCCD20 /* SearchStockResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBE92757955500CCCD20 /* SearchStockResponseResult.swift */; };
+		84CAEBEC2757957500CCCD20 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBEB2757957500CCCD20 /* NetworkError.swift */; };
+		84CAEBEF2757A33500CCCD20 /* StockAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBEE2757A33500CCCD20 /* StockAssembler.swift */; };
+		84CAEBF12757A38800CCCD20 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBF02757A38800CCCD20 /* Stock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		842533A827577026007C75BB /* stocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stocksUITests.swift; sourceTree = "<group>"; };
 		842533AA27577026007C75BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847691C02757761E00A37CEC /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		847691C227577B0900A37CEC /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		84CAEBDF27578B3000CCCD20 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		84CAEBE327578F2300CCCD20 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
+		84CAEBE72757954700CCCD20 /* SearchStockRequestResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockRequestResource.swift; sourceTree = "<group>"; };
+		84CAEBE92757955500CCCD20 /* SearchStockResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockResponseResult.swift; sourceTree = "<group>"; };
+		84CAEBEB2757957500CCCD20 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		84CAEBEE2757A33500CCCD20 /* StockAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAssembler.swift; sourceTree = "<group>"; };
+		84CAEBF02757A38800CCCD20 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +115,7 @@
 		8425338727577023007C75BB /* stocks */ = {
 			isa = PBXGroup;
 			children = (
+				84CAEBE127578F0800CCCD20 /* Shared */,
 				847691BC2757718300A37CEC /* SearchStocks */,
 				8425338827577023007C75BB /* AppDelegate.swift */,
 				8425338A27577023007C75BB /* ViewController.swift */,
@@ -131,6 +148,7 @@
 		847691BC2757718300A37CEC /* SearchStocks */ = {
 			isa = PBXGroup;
 			children = (
+				84CAEBE62757953400CCCD20 /* Model */,
 				847691BF275771CA00A37CEC /* Service */,
 				847691BE275771BC00A37CEC /* View */,
 				847691BD275771A800A37CEC /* Controller */,
@@ -141,6 +159,8 @@
 		847691BD275771A800A37CEC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				847691C227577B0900A37CEC /* MainController.swift */,
+				84CAEBDF27578B3000CCCD20 /* SearchResultsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -158,6 +178,50 @@
 				847691C02757761E00A37CEC /* SearchService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		84CAEBE127578F0800CCCD20 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				84CAEBED2757A32600CCCD20 /* Assembler */,
+				84CAEBE52757951E00CCCD20 /* Model */,
+				84CAEBE227578F1400CCCD20 /* Service */,
+				84CAEBEB2757957500CCCD20 /* NetworkError.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		84CAEBE227578F1400CCCD20 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				84CAEBE327578F2300CCCD20 /* HTTPService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		84CAEBE52757951E00CCCD20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84CAEBF02757A38800CCCD20 /* Stock.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84CAEBE62757953400CCCD20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84CAEBE72757954700CCCD20 /* SearchStockRequestResource.swift */,
+				84CAEBE92757955500CCCD20 /* SearchStockResponseResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84CAEBED2757A32600CCCD20 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				84CAEBEE2757A33500CCCD20 /* StockAssembler.swift */,
+			);
+			path = Assembler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +357,15 @@
 			files = (
 				847691C12757761E00A37CEC /* SearchService.swift in Sources */,
 				8425338B27577023007C75BB /* ViewController.swift in Sources */,
+				84CAEBEA2757955500CCCD20 /* SearchStockResponseResult.swift in Sources */,
 				8425338927577023007C75BB /* AppDelegate.swift in Sources */,
+				84CAEBE427578F2300CCCD20 /* HTTPService.swift in Sources */,
+				84CAEBE82757954700CCCD20 /* SearchStockRequestResource.swift in Sources */,
+				84CAEBEC2757957500CCCD20 /* NetworkError.swift in Sources */,
+				84CAEBEF2757A33500CCCD20 /* StockAssembler.swift in Sources */,
+				84CAEBE027578B3000CCCD20 /* SearchResultsController.swift in Sources */,
+				84CAEBF12757A38800CCCD20 /* Stock.swift in Sources */,
+				847691C327577B0900A37CEC /* MainController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4CFCT32A9J;
 				INFOPLIST_FILE = stocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -486,6 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4CFCT32A9J;
 				INFOPLIST_FILE = stocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

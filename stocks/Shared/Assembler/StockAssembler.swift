@@ -1,5 +1,5 @@
 //
-//  SearchService.swift
+//  StockAssembler.swift
 //  stocks
 //
 //  Created by Admin on 1.12.21.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class SearchService {
-    func getCompanySymbolByName()
+class StockAssembler {
+    func convertToStock(from: SearchStockResponseResource) -> 
 }
