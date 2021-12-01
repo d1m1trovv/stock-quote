@@ -97,6 +97,7 @@
 		8425338727577023007C75BB /* stocks */ = {
 			isa = PBXGroup;
 			children = (
+				847691BC2757718300A37CEC /* SearchStocks */,
 				8425338827577023007C75BB /* AppDelegate.swift */,
 				8425338A27577023007C75BB /* ViewController.swift */,
 				8425338C27577023007C75BB /* Main.storyboard */,
@@ -123,6 +124,37 @@
 				842533AA27577026007C75BB /* Info.plist */,
 			);
 			path = stocksUITests;
+			sourceTree = "<group>";
+		};
+		847691BC2757718300A37CEC /* SearchStocks */ = {
+			isa = PBXGroup;
+			children = (
+				847691BF275771CA00A37CEC /* Service */,
+				847691BE275771BC00A37CEC /* View */,
+				847691BD275771A800A37CEC /* Controller */,
+			);
+			path = SearchStocks;
+			sourceTree = "<group>";
+		};
+		847691BD275771A800A37CEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		847691BE275771BC00A37CEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		847691BF275771CA00A37CEC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
