@@ -44,6 +44,7 @@ class HTTPServiceTests: XCTestCase {
         searchResponseResource = nil
         quoteResponseResource = nil
         detailsResponseResource = nil
+        super.tearDown()
     }
     
     func testGetCompanySymbolByNameSuccess() throws {
@@ -57,9 +58,61 @@ class HTTPServiceTests: XCTestCase {
         
         urlSessionMock.result = (data, response, nil)
         
-        httpService.getCompanySymbolByName("Apple") { result in
+        httpService.getCompanySymbolByName("Apple") { result, error in
             exp.fulfill()
-            XCTAssertEqual(result, self.searchResponseResource)
+            if let result = result,
+                error == nil {
+                XCTAssertEqual(result, self.searchResponseResource)
+            } else {
+                XCTFail()
+            }
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    func testGetCompanySymbolByNameDecodingError() {
+        let exp = expectation(description: "Failure")
+        
+        let data = "Test".data(using: .utf8)
+        let response = HTTPURLResponse(url: URL(string: "http://google.com")!,
+                                       statusCode: 200,
+                                       httpVersion: nil,
+                                       headerFields: nil)
+        
+        urlSessionMock.result = (data, response, nil)
+        
+        httpService.getCompanySymbolByName("Apple") { result, error in
+            exp.fulfill()
+            if let _ = result,
+                error == nil {
+                XCTFail()
+            } else {
+                XCTAssertEqual(error, .decodingError)
+            }
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    func testGetCompanySymbolByNameConnectionFailed() {
+        let exp = expectation(description: "Failure")
+        
+        let response = HTTPURLResponse(url: URL(string: "http://google.com")!,
+                                       statusCode: 400,
+                                       httpVersion: nil,
+                                       headerFields: nil)
+        
+        urlSessionMock.result = (nil, response, nil)
+        
+        httpService.getCompanySymbolByName("Apple") { result, error in
+            exp.fulfill()
+            if let _ = result,
+                error == nil {
+                XCTFail()
+            } else {
+                XCTAssertEqual(error, .connectionFailed)
+            }
         }
         
         wait(for: [exp], timeout: 0.1)
@@ -76,9 +129,61 @@ class HTTPServiceTests: XCTestCase {
         
         urlSessionMock.result = (data, response, nil)
         
-        httpService.getStockDetailsBySymbol("APPL") { result in
+        httpService.getStockDetailsBySymbol("APPL") { result, error in
             exp.fulfill()
-            XCTAssertEqual(result, self.detailsResponseResource)
+            if let result = result,
+                error == nil {
+                XCTAssertEqual(result, self.detailsResponseResource)
+            } else {
+                XCTFail()
+            }
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    func testGetStockDetailsBySymbolDecodingError() {
+        let exp = expectation(description: "Failure")
+        
+        let data = "Test".data(using: .utf8)
+        let response = HTTPURLResponse(url: URL(string: "http://google.com")!,
+                                       statusCode: 200,
+                                       httpVersion: nil,
+                                       headerFields: nil)
+        
+        urlSessionMock.result = (data, response, nil)
+        
+        httpService.getStockDetailsBySymbol("APPL") { result, error in
+            exp.fulfill()
+            if let _ = result,
+                error == nil {
+                XCTFail()
+            } else {
+                XCTAssertEqual(error, .decodingError)
+            }
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    func testGetStockDetailsBySymbolConnectionFailed() {
+        let exp = expectation(description: "Failure")
+
+        let response = HTTPURLResponse(url: URL(string: "http://google.com")!,
+                                       statusCode: 400,
+                                       httpVersion: nil,
+                                       headerFields: nil)
+        
+        urlSessionMock.result = (nil, response, nil)
+        
+        httpService.getStockDetailsBySymbol("APPL") { result, error in
+            exp.fulfill()
+            if let _ = result,
+                error == nil {
+                XCTFail()
+            } else {
+                XCTAssertEqual(error, .connectionFailed)
+            }
         }
         
         wait(for: [exp], timeout: 0.1)

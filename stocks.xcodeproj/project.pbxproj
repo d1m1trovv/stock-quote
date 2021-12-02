@@ -20,6 +20,19 @@
 		8462903E2758C56A00A72D20 /* StockDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462903D2758C56A00A72D20 /* StockDetailsInteractor.swift */; };
 		846290402758F8DC00A72D20 /* HTTPServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462903F2758F8DC00A72D20 /* HTTPServiceTests.swift */; };
 		846290432758F90A00A72D20 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846290422758F90A00A72D20 /* URLSessionMock.swift */; };
+		8462904627590BE200A72D20 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462904527590BE200A72D20 /* NetworkError.swift */; };
+		846290482759115600A72D20 /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846290472759115600A72D20 /* SearchServiceTests.swift */; };
+		8462904A2759117B00A72D20 /* HTTPServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846290492759117B00A72D20 /* HTTPServiceMock.swift */; };
+		8462904C2759131400A72D20 /* StocksAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462904B2759131400A72D20 /* StocksAssemblerMock.swift */; };
+		8462904E2759174400A72D20 /* StockDetailsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462904D2759174400A72D20 /* StockDetailsServiceTests.swift */; };
+		84629052275919A500A72D20 /* SearchStockInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84629051275919A500A72D20 /* SearchStockInteractorTests.swift */; };
+		8462905427591A0000A72D20 /* SearchServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905327591A0000A72D20 /* SearchServiceMock.swift */; };
+		8462905627591AB100A72D20 /* StockDetailsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905527591AB100A72D20 /* StockDetailsServiceMock.swift */; };
+		8462905827591B3C00A72D20 /* MainControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905727591B3C00A72D20 /* MainControllerMock.swift */; };
+		8462905A27591B7B00A72D20 /* SearchResultsControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905927591B7B00A72D20 /* SearchResultsControllerMock.swift */; };
+		8462905C2759209400A72D20 /* StockDetailsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905B2759209400A72D20 /* StockDetailsInteractorTests.swift */; };
+		8462905E275920F000A72D20 /* StockDetailsControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905D275920F000A72D20 /* StockDetailsControllerMock.swift */; };
+		846290602759230500A72D20 /* StockAssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462905F2759230500A72D20 /* StockAssemblerTests.swift */; };
 		847691C12757761E00A37CEC /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847691C02757761E00A37CEC /* SearchService.swift */; };
 		847691C327577B0900A37CEC /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847691C227577B0900A37CEC /* MainController.swift */; };
 		84CAEBE027578B3000CCCD20 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CAEBDF27578B3000CCCD20 /* SearchResultsController.swift */; };
@@ -72,6 +85,19 @@
 		8462903D2758C56A00A72D20 /* StockDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsInteractor.swift; sourceTree = "<group>"; };
 		8462903F2758F8DC00A72D20 /* HTTPServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServiceTests.swift; sourceTree = "<group>"; };
 		846290422758F90A00A72D20 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		8462904527590BE200A72D20 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		846290472759115600A72D20 /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
+		846290492759117B00A72D20 /* HTTPServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServiceMock.swift; sourceTree = "<group>"; };
+		8462904B2759131400A72D20 /* StocksAssemblerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksAssemblerMock.swift; sourceTree = "<group>"; };
+		8462904D2759174400A72D20 /* StockDetailsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsServiceTests.swift; sourceTree = "<group>"; };
+		84629051275919A500A72D20 /* SearchStockInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStockInteractorTests.swift; sourceTree = "<group>"; };
+		8462905327591A0000A72D20 /* SearchServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceMock.swift; sourceTree = "<group>"; };
+		8462905527591AB100A72D20 /* StockDetailsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsServiceMock.swift; sourceTree = "<group>"; };
+		8462905727591B3C00A72D20 /* MainControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerMock.swift; sourceTree = "<group>"; };
+		8462905927591B7B00A72D20 /* SearchResultsControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsControllerMock.swift; sourceTree = "<group>"; };
+		8462905B2759209400A72D20 /* StockDetailsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsInteractorTests.swift; sourceTree = "<group>"; };
+		8462905D275920F000A72D20 /* StockDetailsControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsControllerMock.swift; sourceTree = "<group>"; };
+		8462905F2759230500A72D20 /* StockAssemblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockAssemblerTests.swift; sourceTree = "<group>"; };
 		847691C02757761E00A37CEC /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		847691C227577B0900A37CEC /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		84CAEBDF27578B3000CCCD20 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
@@ -155,6 +181,11 @@
 				8425339D27577026007C75BB /* stocksTests.swift */,
 				8425339F27577026007C75BB /* Info.plist */,
 				8462903F2758F8DC00A72D20 /* HTTPServiceTests.swift */,
+				846290472759115600A72D20 /* SearchServiceTests.swift */,
+				8462904D2759174400A72D20 /* StockDetailsServiceTests.swift */,
+				84629051275919A500A72D20 /* SearchStockInteractorTests.swift */,
+				8462905B2759209400A72D20 /* StockDetailsInteractorTests.swift */,
+				8462905F2759230500A72D20 /* StockAssemblerTests.swift */,
 			);
 			path = stocksTests;
 			sourceTree = "<group>";
@@ -172,8 +203,23 @@
 			isa = PBXGroup;
 			children = (
 				846290422758F90A00A72D20 /* URLSessionMock.swift */,
+				846290492759117B00A72D20 /* HTTPServiceMock.swift */,
+				8462904B2759131400A72D20 /* StocksAssemblerMock.swift */,
+				8462905327591A0000A72D20 /* SearchServiceMock.swift */,
+				8462905527591AB100A72D20 /* StockDetailsServiceMock.swift */,
+				8462905727591B3C00A72D20 /* MainControllerMock.swift */,
+				8462905927591B7B00A72D20 /* SearchResultsControllerMock.swift */,
+				8462905D275920F000A72D20 /* StockDetailsControllerMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		8462904427590BD200A72D20 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				8462904527590BE200A72D20 /* NetworkError.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		847691BC2757718300A37CEC /* SearchStocks */ = {
@@ -216,6 +262,7 @@
 		84CAEBE127578F0800CCCD20 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8462904427590BD200A72D20 /* Enum */,
 				84CAEBED2757A32600CCCD20 /* Assembler */,
 				84CAEBE52757951E00CCCD20 /* Model */,
 				84CAEBE227578F1400CCCD20 /* Service */,
@@ -458,6 +505,7 @@
 				8425338927577023007C75BB /* AppDelegate.swift in Sources */,
 				84CAEBE427578F2300CCCD20 /* HTTPService.swift in Sources */,
 				84F407BA2757B6FC00694238 /* SymbolCell.swift in Sources */,
+				8462904627590BE200A72D20 /* NetworkError.swift in Sources */,
 				84CAEBEF2757A33500CCCD20 /* StockAssembler.swift in Sources */,
 				8462903C2758BC6B00A72D20 /* StockDetailsController.swift in Sources */,
 				84CAEBE027578B3000CCCD20 /* SearchResultsController.swift in Sources */,
@@ -475,9 +523,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8462904A2759117B00A72D20 /* HTTPServiceMock.swift in Sources */,
+				8462905627591AB100A72D20 /* StockDetailsServiceMock.swift in Sources */,
+				8462905C2759209400A72D20 /* StockDetailsInteractorTests.swift in Sources */,
 				846290432758F90A00A72D20 /* URLSessionMock.swift in Sources */,
+				846290482759115600A72D20 /* SearchServiceTests.swift in Sources */,
 				8425339E27577026007C75BB /* stocksTests.swift in Sources */,
 				846290402758F8DC00A72D20 /* HTTPServiceTests.swift in Sources */,
+				8462905A27591B7B00A72D20 /* SearchResultsControllerMock.swift in Sources */,
+				8462904C2759131400A72D20 /* StocksAssemblerMock.swift in Sources */,
+				8462905E275920F000A72D20 /* StockDetailsControllerMock.swift in Sources */,
+				84629052275919A500A72D20 /* SearchStockInteractorTests.swift in Sources */,
+				8462905827591B3C00A72D20 /* MainControllerMock.swift in Sources */,
+				8462905427591A0000A72D20 /* SearchServiceMock.swift in Sources */,
+				846290602759230500A72D20 /* StockAssemblerTests.swift in Sources */,
+				8462904E2759174400A72D20 /* StockDetailsServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

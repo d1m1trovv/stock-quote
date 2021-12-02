@@ -32,19 +32,29 @@ class SearchStockInteractor: SearchStockInteractorProtocol {
     
     func readyToUpdateResults(_ searchingText: String?) {
         guard let searchingText = searchingText else { return }
-        searchService.getCompanySymbolByName(searchingText) { [weak self] result in
+        searchService.getCompanySymbolByName(searchingText) { [weak self] result, error in
             guard let self = self else { return }
-            let searchResultViewModels = self.convertToSearchResultViewModel(result) 
-            self.resultsController?.updateTableWithSearchResults(searchResultViewModels)
+            if let result = result,
+                error == nil {
+                let searchResultViewModels = self.convertToSearchResultViewModel(result)
+                self.resultsController?.updateTableWithSearchResults(searchResultViewModels)
+            } else {
+                print(error?.localizedDescription ?? "")
+            }
         }
         //resultsController?.updateTableWithSearchResults(SearchResultViewModel(symbol: "PSFE"))
     }
     
     func stockSymbolClicked(_ symbol: String?) {
         guard let symbol = symbol else { return }
-        detailsService.getStockDetailsBySymbol(symbol) { [weak self] result in
+        detailsService.getStockDetailsBySymbol(symbol) { [weak self] result, error in
             guard let self = self else { return }
-            self.mainController?.navigateToStockDetails(result, symbol)
+            if let result = result,
+                error == nil {
+                self.mainController?.navigateToStockDetails(result, symbol)
+            } else {
+                print(error?.localizedDescription ?? "")
+            }
         }
     }
     

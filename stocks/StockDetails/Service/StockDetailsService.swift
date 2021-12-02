@@ -10,7 +10,7 @@ import Foundation
 
 protocol StockDetailsServiceProtocol: AnyObject {
     func getStockDetailsBySymbol(_ symbol: String,
-                                 completion: @escaping (Stock) -> Void)
+                                 completion: @escaping (Stock?, NetworkError?) -> Void)
 }
 
 class StockDetailsService: StockDetailsServiceProtocol {
@@ -24,11 +24,16 @@ class StockDetailsService: StockDetailsServiceProtocol {
     }
     
     func getStockDetailsBySymbol(_ symbol: String,
-                                 completion: @escaping (Stock) -> Void) {
-        httpService.getStockDetailsBySymbol(symbol) { [weak self] result in
+                                 completion: @escaping (Stock?, NetworkError?) -> Void) {
+        httpService.getStockDetailsBySymbol(symbol) { [weak self] result, error in
             guard let self = self else { return }
-            let stock = self.stockAssembler.convertToStock(from: result)
-            completion(stock)
+            if let result = result,
+                error == nil {
+                let stock = self.stockAssembler.convertToStock(from: result)
+                completion(stock, nil)
+            } else {
+                completion(nil, error)
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol SearchServiceProtocol: AnyObject {
-    func getCompanySymbolByName(_ companyName: String, completion: @escaping (StockSymbol) -> Void)
+    func getCompanySymbolByName(_ companyName: String, completion: @escaping (StockSymbol?, NetworkError?) -> Void)
 }
 
 class SearchService: SearchServiceProtocol {
@@ -22,12 +22,17 @@ class SearchService: SearchServiceProtocol {
         self.stocksAssembler = stocksAssembler
     }
     
-    func getCompanySymbolByName(_ companyName: String, completion: @escaping (StockSymbol) -> Void) {
-        httpService.getCompanySymbolByName(companyName) { [weak self] result in
+    func getCompanySymbolByName(_ companyName: String, completion: @escaping (StockSymbol?, NetworkError?) -> Void) {
+        httpService.getCompanySymbolByName(companyName) { [weak self] result, error in
             guard let self = self else { return }
-            let stockSymbols = self.stocksAssembler.convertToStockSymbol(from: result)
-            print(stockSymbols)
-            completion(stockSymbols)
+            if let result = result,
+                error == nil {
+                let stockSymbols = self.stocksAssembler.convertToStockSymbol(from: result)
+                print(stockSymbols)
+                completion(stockSymbols, nil)
+            } else {
+                completion(nil, error)
+            }
         }
     }
 }

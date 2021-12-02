@@ -18,9 +18,9 @@ extension URLSession: URLSessionProtocol {}
 
 protocol HTTPServiceProtocol: AnyObject {
     func getCompanySymbolByName(_ companyName: String,
-                                completion: @escaping (SearchStockResponseResource) -> Void)
+                                completion: @escaping (SearchStockResponseResource?, NetworkError?) -> Void)
     func getStockDetailsBySymbol(_ symbol: String,
-    completion: @escaping (StockDetailsResponseResource) -> Void)
+    completion: @escaping (StockDetailsResponseResource?, NetworkError?) -> Void)
 }
 
 class HTTPService: HTTPServiceProtocol {
@@ -33,7 +33,7 @@ class HTTPService: HTTPServiceProtocol {
     }
     
     func getCompanySymbolByName(_ companyName: String,
-                                completion: @escaping (SearchStockResponseResource) -> Void) {
+                                completion: @escaping (SearchStockResponseResource?, NetworkError?) -> Void) {
         guard let url = URL(string: getCompanySymbolURL + companyName) else { return }
         
         let request = createRequest(url, "GET")
@@ -46,18 +46,25 @@ class HTTPService: HTTPServiceProtocol {
                 do {
                     let stocks = try JSONDecoder().decode(SearchStockResponseResource.self, from: data)
                     DispatchQueue.main.async {
-                        completion(stocks)
+                        completion(stocks, nil)
                     }
                 } catch let error {
                     print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        completion(nil, .decodingError)
+                    }
                     return
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil, .connectionFailed)
                 }
             }
         }.resume()
     }
     
     func getStockDetailsBySymbol(_ symbol: String,
-                                 completion: @escaping (StockDetailsResponseResource) -> Void) {
+                                 completion: @escaping (StockDetailsResponseResource?, NetworkError?) -> Void) {
         guard let url = URL(string: getStockDetailsURL + symbol) else { return }
         
         let request = createRequest(url, "GET")
@@ -70,14 +77,21 @@ class HTTPService: HTTPServiceProtocol {
                 do {
                     let details = try JSONDecoder().decode(StockDetailsResponseResource.self, from: data)
                     DispatchQueue.main.async {
-                        completion(details)
+                        completion(details, nil)
                     }
                 } catch let error {
                     print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        completion(nil, .decodingError)
+                    }
                     return
                 }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil, .connectionFailed)
+                }
             }
-            }.resume()
+        }.resume()
     }
     
     private func createRequest(_ url: URL, _ method: String) -> URLRequest {
