@@ -15,7 +15,6 @@ struct SearchResultViewModel {
 
 protocol SearchResultsControllerProtocol: AnyObject {
     func updateTableWithSearchResults(_ searchResult: SearchResultViewModel)
-    func navigateToStockDetails(_ stockDetails: Stock, _ symbol: String)
 }
 
 class SearchResultsController: UITableViewController {
@@ -35,16 +34,6 @@ class SearchResultsController: UITableViewController {
         }
         
         interactor?.readyToUpdateResults(searchText)
-    }
-    
-    func navigateToStockDetails(_ stockDetails: Stock, _ symbol: String) {
-        let detailsController = StockDetailsController()
-        let detailsInteractor = StockDetailsInteractor(controller: detailsController)
-        detailsInteractor.stockDetails = stockDetails
-        detailsInteractor.symbol = symbol
-        detailsController.interactor = detailsInteractor
-        let navigationController = UINavigationController(rootViewController: detailsController)
-        present(navigationController, animated: true)
     }
 }
 
@@ -72,9 +61,10 @@ extension SearchResultsController {
         if let currentResultViewModel = searchResultsViewModel {
             cell.setSymbolLabelText(currentResultViewModel.symbol)
             print(currentResultViewModel.symbol)
-        } else {
-            cell.setSymbolLabelText("PSFE")
         }
+//        else {
+//            cell.setSymbolLabelText("PSFE")
+//        }
         
         return cell
     }

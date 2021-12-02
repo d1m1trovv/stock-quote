@@ -17,14 +17,17 @@ class SearchStockInteractor: SearchStockInteractorProtocol {
     private let searchService: SearchServiceProtocol
     private let detailsService: StockDetailsServiceProtocol
     
-    weak var controller: SearchResultsControllerProtocol?
+    weak var resultsController: SearchResultsControllerProtocol?
+    weak var mainController: MainControllerProtocol?
     
     init(searchService: SearchServiceProtocol = SearchService(),
          controller: SearchResultsControllerProtocol = SearchResultsController(),
-         detailsService: StockDetailsServiceProtocol = StockDetailsService()) {
+         detailsService: StockDetailsServiceProtocol = StockDetailsService(),
+         mainController: MainControllerProtocol = MainController()) {
         self.searchService = searchService
-        self.controller = controller
+        self.resultsController = controller
         self.detailsService = detailsService
+        self.mainController = mainController
     }
     
     func readyToUpdateResults(_ searchingText: String?) {
@@ -32,16 +35,16 @@ class SearchStockInteractor: SearchStockInteractorProtocol {
         searchService.getCompanySymbolByName(searchingText) { [weak self] result in
             guard let self = self else { return }
             let searchResultViewModels = self.convertToSearchResultViewModel(result) 
-            self.controller?.updateTableWithSearchResults(searchResultViewModels)
+            self.resultsController?.updateTableWithSearchResults(searchResultViewModels)
         }
-        controller?.updateTableWithSearchResults(SearchResultViewModel(symbol: "PSFE"))
+        //resultsController?.updateTableWithSearchResults(SearchResultViewModel(symbol: "PSFE"))
     }
     
     func stockSymbolClicked(_ symbol: String?) {
         guard let symbol = symbol else { return }
         detailsService.getStockDetailsBySymbol(symbol) { [weak self] result in
             guard let self = self else { return }
-            self.controller?.navigateToStockDetails(result, symbol)
+            self.mainController?.navigateToStockDetails(result, symbol)
         }
     }
     

@@ -8,6 +8,14 @@
 
 import Foundation
 
+protocol URLSessionProtocol: AnyObject {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+    
+    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+}
+
+extension URLSession: URLSessionProtocol {}
+
 protocol HTTPServiceProtocol: AnyObject {
     func getCompanySymbolByName(_ companyName: String,
                                 completion: @escaping (SearchStockResponseResource) -> Void)
@@ -16,9 +24,13 @@ protocol HTTPServiceProtocol: AnyObject {
 }
 
 class HTTPService: HTTPServiceProtocol {
+    private let session: URLSessionProtocol
     private let getCompanySymbolURL = "https://stock-market-data.p.rapidapi.com/search/company-name-to-ticker-symbol?company_name="
     private let getStockDetailsURL = "https://stock-market-data.p.rapidapi.com/stock/quote?ticker_symbol="
     
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     func getCompanySymbolByName(_ companyName: String,
                                 completion: @escaping (SearchStockResponseResource) -> Void) {
@@ -26,7 +38,7 @@ class HTTPService: HTTPServiceProtocol {
         
         let request = createRequest(url, "GET")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             if let data = data,
                 let httpResponse = response as? HTTPURLResponse,
                 (200..<300).contains(httpResponse.statusCode),
@@ -50,7 +62,7 @@ class HTTPService: HTTPServiceProtocol {
         
         let request = createRequest(url, "GET")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             if let data = data,
                 let httpResponse = response as? HTTPURLResponse,
                 (200..<300).contains(httpResponse.statusCode),
