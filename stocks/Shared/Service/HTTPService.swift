@@ -11,6 +11,8 @@ import Foundation
 protocol HTTPServiceProtocol: AnyObject {
     func getCompanySymbolByName(_ companyName: String,
                                 completion: @escaping (SearchStockResponseResource) -> Void)
+    func getStockDetailsBySymbol(_ symbol: String,
+    completion: @escaping (StockDetailsResponseResource) -> Void)
 }
 
 class HTTPService: HTTPServiceProtocol {
@@ -69,7 +71,7 @@ class HTTPService: HTTPServiceProtocol {
     private func createRequest(_ url: URL, _ method: String) -> URLRequest {
         let headers = [
             "x-rapidapi-host": "stock-market-data.p.rapidapi.com",
-            "x-rapidapi-key": "828609b044msh172ee1c787b9618p133205jsn8eee13ad9b52"
+            "x-rapidapi-key": "f57793f37emsh71620bb5e54abfap12ebcejsn3e4b5995c81f"
         ]
         
         var request = URLRequest(url: url,

@@ -15,6 +15,7 @@ struct SearchResultViewModel {
 
 protocol SearchResultsControllerProtocol: AnyObject {
     func updateTableWithSearchResults(_ searchResult: SearchResultViewModel)
+    func navigateToStockDetails(_ stockDetails: Stock, _ symbol: String)
 }
 
 class SearchResultsController: UITableViewController {
@@ -35,6 +36,16 @@ class SearchResultsController: UITableViewController {
         
         interactor?.readyToUpdateResults(searchText)
     }
+    
+    func navigateToStockDetails(_ stockDetails: Stock, _ symbol: String) {
+        let detailsController = StockDetailsController()
+        let detailsInteractor = StockDetailsInteractor(controller: detailsController)
+        detailsInteractor.stockDetails = stockDetails
+        detailsInteractor.symbol = symbol
+        detailsController.interactor = detailsInteractor
+        let navigationController = UINavigationController(rootViewController: detailsController)
+        present(navigationController, animated: true)
+    }
 }
 
 extension SearchResultsController: UISearchResultsUpdating {
@@ -49,6 +60,7 @@ extension SearchResultsController: UISearchResultsUpdating {
 }
 
 extension SearchResultsController {
+    // DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let _ = searchResultsViewModel else { return 0 }
         return 1
@@ -60,9 +72,18 @@ extension SearchResultsController {
         if let currentResultViewModel = searchResultsViewModel {
             cell.setSymbolLabelText(currentResultViewModel.symbol)
             print(currentResultViewModel.symbol)
+        } else {
+            cell.setSymbolLabelText("PSFE")
         }
         
         return cell
+    }
+    
+    // Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let currentResultViewModel = searchResultsViewModel {
+            interactor?.stockSymbolClicked(currentResultViewModel.symbol)
+        }
     }
 }
 

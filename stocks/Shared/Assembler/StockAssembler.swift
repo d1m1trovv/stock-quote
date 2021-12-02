@@ -10,6 +10,7 @@ import Foundation
 
 protocol StockAssemblerProtocol: AnyObject {
     func convertToStockSymbol(from searchStockResponseResource: SearchStockResponseResource) -> StockSymbol
+    func convertToStock(from stockDetailsResponseResource: StockDetailsResponseResource) -> Stock
 }
 
 class StockAssembler: StockAssemblerProtocol {

@@ -25,6 +25,10 @@ class StockDetailsService: StockDetailsServiceProtocol {
     
     func getStockDetailsBySymbol(_ symbol: String,
                                  completion: @escaping (Stock) -> Void) {
-        //
+        httpService.getStockDetailsBySymbol(symbol) { [weak self] result in
+            guard let self = self else { return }
+            let stock = self.stockAssembler.convertToStock(from: result)
+            completion(stock)
+        }
     }
 }
